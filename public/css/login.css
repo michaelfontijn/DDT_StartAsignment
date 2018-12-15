@@ -1,0 +1,16 @@
+#loginContainer{
+    padding-top:45px;
+    padding-bottom: 10px;
+    background-color:#FEF5CE;
+    border:1px solid grey;
+    border-radius: 6px;
+    box-shadow: 0 0 10px;
+
+}
+
+.btnLogin{
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+

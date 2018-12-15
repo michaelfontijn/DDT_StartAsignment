@@ -1,0 +1,25 @@
+.logo{
+    height:100px;
+    width:400px;
+}
+
+body{
+background-color:#00A0AD;
+}
+
+hr{
+    background-color:#00A0AD;
+}
+
+#siteContainer{
+    margin-top:10px;
+    padding-top:10px;
+    background-color:white;
+    border-radius: 6px;
+
+}
+
+.btn-custom{
+    background-color:#EE7F50;
+    color:#FFFFFF;
+}

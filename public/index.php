@@ -7,6 +7,8 @@ use Phalcon\Mvc\View\Engine\Volt;
 use Phalcon\Mvc\Url as UrlProvider;
 use Phalcon\Mvc\Application;
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
+use Phalcon\Assets\Manager as AssetManager;
+
 
 // Define some absolute path constants to aid in locating resources
 define('BASE_PATH', dirname(__DIR__));
@@ -85,6 +87,7 @@ $di->set(
         );
     }
 );
+
 
 //This handles incoming requests and routes them to the corresponding controller actions?
 $application = new Application($di);
