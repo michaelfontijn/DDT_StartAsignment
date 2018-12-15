@@ -15,16 +15,11 @@ class UserController extends ControllerBase
     }
 
     public function loginAction(){
-        $sessions = $this->getDI()->getShared("session");
-
-        //check if the user is already logged in
-        if ($sessions->has("user_id")) {
-            return $this->response->redirect("/index");
-        }
-
         //get the login data from the post
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
+
+        //TODO if username/ password empty
 
         //check if a user with the supplied username is present in the database
         $user = User::findFirst([
@@ -35,17 +30,18 @@ class UserController extends ControllerBase
         //if a user with the supplied username was found, check if the combination of password and username is valid
         if ($user) {
             if ($this->security->checkHash($password, $user->password)) {
-                //put the users unique identifier in a session
-                $sessions->set("user_id", $user->username);
-                //redirect to the admin
+
+                //redirect to the admin home page
                 return $this->response->redirect("/index");
+            }
+            else{
+                //TODO invalid combination of password and username...
             }
         }
     }
 
     public function createAction(){
         $user = new User();
-
 
         //you would normally retrieve the user data from the post like:
         //$username = $this->request->getPost('username');
@@ -59,5 +55,8 @@ class UserController extends ControllerBase
         $user->password = $this->security->hash($password);
 
         $user->save();
+
+        //for now just redirect to the homepage after inserting the demo user
+        return $this->response->redirect("/index");
     }
 }
