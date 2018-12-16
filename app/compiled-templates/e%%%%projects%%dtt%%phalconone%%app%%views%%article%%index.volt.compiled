@@ -1,0 +1,36 @@
+<h4 class="yellow">Widget News Admin</h4>
+<p>You are logged in as {TODO}. <a href="user/logout">Log out</a></p>
+<hr>
+
+<h1 class="orange">All Articles</h1><br>
+
+<?php if (isset($articles) && $this->length($articles) > 0) { ?>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Publication Date</th>
+            <th>Article</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($articles as $article) { ?>
+            <tr class="articleTableRow" data-articleId="<?= $article->id ?>">
+                <td><?= $article->creationDate ?></td>
+                <td><?= $article->title ?></td>
+
+            </tr>
+        <?php } ?>
+
+        </tbody>
+    </table>
+
+<?php } ?>
+
+ <?php if ($this->length($articles) > 0) { ?>
+     <p><?= $this->length($articles) ?> articles in total.</p>
+ <?php } else { ?>
+     <p>No articles found</p>
+ <?php } ?>
+
+<a href="create">Add a New Article</a>
+

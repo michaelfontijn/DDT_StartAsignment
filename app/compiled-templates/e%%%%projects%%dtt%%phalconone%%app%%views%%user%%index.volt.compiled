@@ -1,6 +1,15 @@
 <div id="loginContainer" class="col-md-6 offset-3">
-    <?= $this->tag->form(['user/login']) ?>
 
+    
+    <?php if (isset($validationErros) && $this->length($validationErrors) > 0) { ?>
+        <div id="valErrorContainer">
+            <?php foreach ($validationErrors as $error) { ?>
+                <p><?= $error ?></p>
+            <?php } ?>
+        </div>
+    <?php } ?>
+
+    <?= $this->tag->form(['user/login']) ?>
     <div class="form-group row">
         <label for="username" class="col-md-2 col-form-label">Username</label>
         <div class="col-md-10">

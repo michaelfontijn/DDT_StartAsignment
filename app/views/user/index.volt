@@ -1,6 +1,15 @@
 <div id="loginContainer" class="col-md-6 offset-3">
-    {{ form('user/login') }}
 
+    {#If there are validation errors, show them#}
+    {% if  validationErros is defined and validationErrors | length > 0 %}
+        <div id="valErrorContainer">
+            {% for error in validationErrors %}
+                <p>{{ error }}</p>
+            {% endfor  %}
+        </div>
+    {% endif  %}
+
+    {{ form('user/login') }}
     <div class="form-group row">
         <label for="username" class="col-md-2 col-form-label">Username</label>
         <div class="col-md-10">

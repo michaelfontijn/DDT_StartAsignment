@@ -88,6 +88,27 @@ $di->set(
     }
 );
 
+$di->set(
+    'router',
+    function (){
+        $router = new \Phalcon\Mvc\Router();
+
+        $router->add('/', array(
+            'controller' => 'index',
+            'action' => 'index',
+        ));
+        $router->add(
+            '/article/create',
+            [
+                'controller' => 'article',
+                'action'     => 'create',
+            ]
+        );
+
+        return $router;
+    }
+);
+
 
 //This handles incoming requests and routes them to the corresponding controller actions?
 $application = new Application($di);

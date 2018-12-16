@@ -9,9 +9,10 @@
 class UserController extends ControllerBase
 {
 
+
+
     public function indexAction(){
-        $cssCollection = $this->assets->collection('cssCollection');
-        $cssCollection->addCss('css/login.css');
+
     }
 
     public function loginAction(){
@@ -19,7 +20,15 @@ class UserController extends ControllerBase
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        //TODO if username/ password empty
+        //an array to store all validation errors that occur
+        $validationErrors = array();
+
+        if(empty($username)){
+            array_push($validationErrors, "Please enter your username");
+        }
+        if(empty($password)){
+            array_push($validationErrors, "Please enter your password");
+        }
 
         //check if a user with the supplied username is present in the database
         $user = User::findFirst([
@@ -32,22 +41,22 @@ class UserController extends ControllerBase
             if ($this->security->checkHash($password, $user->password)) {
 
                 //redirect to the admin home page
-                return $this->response->redirect("/index");
+                return $this->response->redirect("/article");
             }
             else{
-                //TODO invalid combination of password and username...
+                array_push($validationErrors, "Incorrect username or password. Please try again.");
+
+                //TODO implement the CRF something token, it looks prty easy(find it in cheatsheet security)
             }
         }
+        //TODO display validation!
+        return $this->response->redirect("/index");
     }
 
     public function createAction(){
         $user = new User();
 
-        //you would normally retrieve the user data from the post like:
-        //$username = $this->request->getPost('username');
-        //$password = $this->request->getPost('password');
-
-        //for this assignment user registration wasn't mandatory so i create one test user manually
+        //for this assignment user registration wasn't mandatory so i create a test user manually
         $username = "michael";
         $password = "test";
 

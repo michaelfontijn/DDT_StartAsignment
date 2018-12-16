@@ -7,19 +7,20 @@
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/site.css">
-        <link rel="stylesheet" href="css/login.css">
+
+        {#Render local css assets#}
+        {{ assets.outputCss() }}
 
     </head>
     <body>
         <div class="container" id="siteContainer">
-            {#The logo#}
-            <a href="index"><img src="img/DTT%20logo.png" class="logo"></a>
+            {#The logo, using the tag helper prevents the image #}
+            <a href="index">{{ image('img/DTT%20logo.png', 'class' : 'logo') }}</a>
 
             <hr/>
 
             <!-- Load in the content-->
-            <?php echo $this->getContent(); ?>
+            {{ content() }}
 
             <div id="footer">
                 <hr/>
@@ -27,12 +28,10 @@
             </div>
         </div>
 
-
-
         <!--Load js  -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        {#Custom js#}
-        <script src="js/site.js"></script>
+        {# Render local js assets#}
+        {{ assets.outputJs() }}
 
     </body>
 </html>

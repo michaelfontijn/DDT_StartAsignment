@@ -7,19 +7,20 @@
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/site.css">
-        <link rel="stylesheet" href="css/login.css">
+
+        
+        <?= $this->assets->outputCss() ?>
 
     </head>
     <body>
         <div class="container" id="siteContainer">
             
-            <a href="index"><img src="img/DTT%20logo.png" class="logo"></a>
+            <a href="index"><?= $this->tag->image(['img/DTT%20logo.png', 'class' => 'logo']) ?></a>
 
             <hr/>
 
             <!-- Load in the content-->
-            <?php echo $this->getContent(); ?>
+            <?= $this->getContent() ?>
 
             <div id="footer">
                 <hr/>
@@ -27,12 +28,10 @@
             </div>
         </div>
 
-
-
         <!--Load js  -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         
-        <script src="js/site.js"></script>
+        <?= $this->assets->outputJs() ?>
 
     </body>
 </html>
