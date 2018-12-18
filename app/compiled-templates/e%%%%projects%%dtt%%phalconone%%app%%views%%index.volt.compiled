@@ -15,7 +15,8 @@
     <body>
         <div class="container" id="siteContainer">
             
-            <a href="index"><?= $this->tag->image(['img/DTT%20logo.png', 'class' => 'logo']) ?></a>
+
+            <?= $this->tag->linkTo(['index', $this->tag->image(['img/DTT%20logo.png'])]) ?>
 
             <hr/>
 
@@ -24,7 +25,8 @@
 
             <div id="footer">
                 <hr/>
-                <p>DTT Multimedia @ 2018. All rights reserved. <a href="user">Site Admin</a></p>
+                <p>DTT Multimedia @ 2018. All rights reserved. <?= $this->tag->linkTo(['user', 'Site admin']) ?></p>
+
             </div>
         </div>
 

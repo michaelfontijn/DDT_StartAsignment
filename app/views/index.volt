@@ -15,7 +15,8 @@
     <body>
         <div class="container" id="siteContainer">
             {#The logo, using the tag helper prevents the image #}
-            <a href="index">{{ image('img/DTT%20logo.png', 'class' : 'logo') }}</a>
+
+            {{ link_to('index', image('img/DTT%20logo.png')) }}
 
             <hr/>
 
@@ -24,7 +25,8 @@
 
             <div id="footer">
                 <hr/>
-                <p>DTT Multimedia @ 2018. All rights reserved. <a href="user">Site Admin</a></p>
+                <p>DTT Multimedia @ 2018. All rights reserved. {{ link_to('user', 'Site admin') }}</p>
+
             </div>
         </div>
 

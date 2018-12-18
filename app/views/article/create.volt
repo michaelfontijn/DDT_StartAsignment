@@ -1,5 +1,6 @@
 
-<p>TODO section, the dont repeat problem :)</p>
+{#render  the widget admin menu partial view#}
+{{ partial("shared/_adminWidgetMenu") }}
 
 <h1 class="orange">New article</h1>
 

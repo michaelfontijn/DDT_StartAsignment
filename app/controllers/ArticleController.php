@@ -43,6 +43,10 @@ class ArticleController extends ControllerBase
     }
 
     public function editAction($id){
+        $article = Article::findFirst(['id = ?0', 'bind' => [$id]]);
 
+        $this->view->setVar("title", $article->title);
+        $this->view->setVar("summary", $article->summary);
+        $this->view->setVar("content", $article->content);
     }
 }

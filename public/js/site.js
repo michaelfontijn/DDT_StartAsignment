@@ -1,9 +1,5 @@
 
+//The onclick event for the admin article table
 $(document).on( "click", ".articleTableRow" , function() {
-
-    var articleId = $(this).data('articleid');
-    $.get("article/edit", {id : articleId}, function(data){
-        //do nothing?
-        window.location = "article/edit/1";
-    })
+    window.location = "article/edit/" + $(this).data('articleid');
 });

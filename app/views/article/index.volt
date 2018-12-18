@@ -1,11 +1,11 @@
-<h4 class="yellow">Widget News Admin</h4>
-<p>You are logged in as {TODO}. <a href="user/logout">Log out</a></p>
-<hr>
+
+{#render  the widget admin menu partial view#}
+{{ partial("shared/_adminWidgetMenu") }}
 
 <h1 class="orange">All Articles</h1><br>
 
 {% if articles is defined and articles | length > 0 %}
-    <table class="table table-striped">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th>Publication Date</th>
