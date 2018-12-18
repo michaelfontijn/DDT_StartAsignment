@@ -1,0 +1,34 @@
+<div class="form-group row">
+    <label for="title" class="col-md-2 col-form-label">Article Title</label>
+    <div class="col-md-10">
+        <?php if (isset($title)) { ?>
+            <?= $this->tag->textField(['title', 'size' => 32, 'class' => 'form-control', 'value' => $title]) ?>
+        <?php } else { ?>
+            <?= $this->tag->textField(['title', 'size' => 32, 'class' => 'form-control']) ?>
+        <?php } ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="summary" class="col-md-2 col-form-label">Article Summary</label>
+    <div class="col-md-10">
+        <?php if (isset($summary)) { ?>
+            <?= $this->tag->textArea(['summary', 'size' => 32, 'class' => 'form-control', 'value' => $summary]) ?>
+        <?php } else { ?>
+            <?= $this->tag->textArea(['summary', 'size' => 32, 'class' => 'form-control']) ?>
+        <?php } ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="content" class="col-md-2 col-form-label">Article Content</label>
+    <div class="col-md-10">
+        <?php if (isset($content)) { ?>
+            <?= $this->tag->textArea(['content', 'size' => 32, 'class' => 'form-control', 'value' => $content]) ?>
+        <?php } else { ?>
+            <?= $this->tag->textArea(['content', 'size' => 32, 'class' => 'form-control']) ?>
+        <?php } ?>
+    </div>
+</div>
+
+<br>

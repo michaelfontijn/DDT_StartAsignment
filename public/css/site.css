@@ -17,6 +17,7 @@ hr{
 .btn-custom{
     background-color:#EE7F50;
     color:#FFFFFF;
+    border:1px solid black;
 }
 
 .orange{
@@ -25,4 +26,8 @@ hr{
 
 .yellow{
     color:#EBCB53;
+}
+
+.center-text{
+    text-align: center;
 }

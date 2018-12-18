@@ -14,27 +14,12 @@
     {% endif  %}
 
     {{ form('article/create') }}
-    <div class="form-group row">
-        <label for="title" class="col-md-2 col-form-label">Article Title</label>
-        <div class="col-md-10">
-            {{ text_field('title', 'size' : 32, 'class' : 'form-control') }}
-        </div>
-    </div>
+        {{ partial("article/_form") }}
 
-    <div class="form-group row">
-        <label for="summary" class="col-md-2 col-form-label">Article Summary</label>
-        <div class="col-md-10">
-            {{ text_area('summary', 'size': 32, 'class' : 'form-control') }}
+        <div class="col-md-8 offset-2 center-text">
+            {{ submit_button('Login!', 'class' : 'btn btn-custom col-md-3') }}
+            {{ link_to("article/", "cancel", 'class' :'btn btn-custom col-md-3') }}
         </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="content" class="col-md-2 col-form-label">Article Content</label>
-        <div class="col-md-10">
-            {{ text_area('content', 'size': 32, 'class' : 'form-control') }}
-        </div>
-    </div>
-    {{ submit_button('Login!', 'class' : 'btn btn-custom col-md-4 offset-4 btnLogin') }}
     {{ end_form() }}
 
 

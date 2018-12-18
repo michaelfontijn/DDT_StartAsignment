@@ -15,27 +15,9 @@
     {% endif  %}
 
     {{ form('article/edit') }}
-    <div class="form-group row">
-        <label for="title" class="col-md-2 col-form-label">Article Title</label>
-        <div class="col-md-10">
-            {{ text_field('title', 'size' : 32, 'class' : 'form-control' , 'value' : title ) }}
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="summary" class="col-md-2 col-form-label">Article Summary</label>
-        <div class="col-md-10">
-            {{ text_area('summary', 'size': 32, 'class' : 'form-control', 'value' : summary) }}
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="content" class="col-md-2 col-form-label">Article Content</label>
-        <div class="col-md-10">
-            {{ text_area('content', 'size': 32, 'class' : 'form-control', 'value' : content) }}
-        </div>
-    </div>
-    {{ submit_button('Login!', 'class' : 'btn btn-custom col-md-4 offset-4 btnLogin') }}
+        {{ partial("article/_form") }}
+        <h1>TODO date field!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>
+        {{ submit_button('Login!', 'class' : 'btn btn-custom col-md-4 offset-4 btnLogin') }}
     {{ end_form() }}
 
 

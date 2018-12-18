@@ -33,5 +33,3 @@
  {% endif %}
 
 <a href="create">Add a New Article</a>
-{#{{ link_to(['for':'/article/create', 'param':'param'], 'Edit') }}#}
-{#{{ link_to(['products/edit/10', 'Edit', 'class':'edit-btn']) }}#}
