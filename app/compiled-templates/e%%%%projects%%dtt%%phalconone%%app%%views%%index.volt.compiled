@@ -23,10 +23,9 @@
             <!-- Load in the content-->
             <?= $this->getContent() ?>
 
-            <div id="footer">
+            <div id="footer" >
                 <hr/>
-                <p>DTT Multimedia @ 2018. All rights reserved. <?= $this->tag->linkTo(['user', 'Site admin']) ?></p>
-
+                <p class="footerText">DTT Multimedia @ 2018. All rights reserved. <?= $this->tag->linkTo(['user', 'Site admin']) ?></p>
             </div>
         </div>
 

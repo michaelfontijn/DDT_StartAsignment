@@ -1,5 +1,4 @@
 
+<?= $this->partial('article/_overview') ?>
 
-
-
-        <h1><?= $title ?></h1>
+<?= $this->tag->linkTo(['article/archive', 'Article Archive']) ?>

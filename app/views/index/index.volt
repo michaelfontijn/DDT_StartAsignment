@@ -1,5 +1,4 @@
+{#The overview containting the actual articles#}
+{{ partial("article/_overview") }}
 
-
-
-
-        <h1>{{ title }}</h1>
+{{ link_to("article/archive", "Article Archive") }}

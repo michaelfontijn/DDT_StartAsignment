@@ -1,0 +1,12 @@
+
+
+<?= $this->partial('article/_overview') ?>
+
+
+<?php if (isset($articles)) { ?>
+    <p><?= $this->length($articles) ?> articles in total.</p>
+<?php } ?>
+
+
+<?= $this->tag->linkTo(['index', 'Return to Homepage']) ?>
+

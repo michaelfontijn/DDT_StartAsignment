@@ -34,4 +34,4 @@
 
 
 {{ linkto("article/create", "Add a New Article") }}
-{#<a href="create">Add a New Article</a>#}
+

@@ -13,6 +13,9 @@ hr{
     border-radius: 6px;
 
 }
+#footer{
+   padding-bottom:5px;
+}
 
 .btn-custom{
     background-color:#EE7F50;
@@ -42,4 +45,20 @@ hr{
 
 .mouse-clickable{
     cursor:pointer;
+}
+
+.article-title{
+    color:#EED053;
+    font-size:30px;
+
+}
+.article-title:hover{
+    color:#9e9493!important;
+    text-decoration: none!important;
+}
+
+.article-date{
+    color:#F09682;
+    font-size:12px;
+    font-weight:bold;
 }

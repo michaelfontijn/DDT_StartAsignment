@@ -23,10 +23,9 @@
             <!-- Load in the content-->
             {{ content() }}
 
-            <div id="footer">
+            <div id="footer" >
                 <hr/>
-                <p>DTT Multimedia @ 2018. All rights reserved. {{ link_to('user', 'Site admin') }}</p>
-
+                <p class="footerText">DTT Multimedia @ 2018. All rights reserved. {{ link_to('user', 'Site admin') }}</p>
             </div>
         </div>
 

@@ -9,6 +9,13 @@
 class IndexController extends ControllerBase
 {
     public function indexAction(){
-        $this->view->title = "Welcome!";
+        //get all articles from the database
+        $articles = Article::find([
+                'order' => 'creationDate DESC',
+                'limit' => 5
+        ]);
+
+        $this->view->setVar("articles", $articles);
     }
+
 }

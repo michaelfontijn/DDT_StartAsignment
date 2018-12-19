@@ -81,4 +81,9 @@ class ArticleController extends ControllerBase
             }
         }
     }
+
+    public function archiveAction(){
+        $articles = Article::find();
+        $this->view->setVar("articles", $articles);
+    }
 }
