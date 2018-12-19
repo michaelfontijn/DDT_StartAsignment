@@ -13,14 +13,18 @@
         </div>
     <?php } ?>
 
-    <?= $this->tag->form(['article/create']) ?>
-        <?= $this->partial('article/_form') ?>
+    
+    <div class="articleForm">
+        <?= $this->tag->form(['article/create']) ?>
+            <?= $this->partial('article/_form') ?>
 
-        <div class="col-md-8 offset-2 center-text">
-            <?= $this->tag->submitButton(['Login!', 'class' => 'btn btn-custom col-md-3']) ?>
-            <?= $this->tag->linkTo(['article/', 'cancel', 'class' => 'btn btn-custom col-md-3']) ?>
-        </div>
-    <?= $this->tag->endForm() ?>
+            <div class="col-md-8 offset-2 center-text">
+                <?= $this->tag->submitButton(['Save Changes', 'class' => 'btn btn-custom col-md-3']) ?>
+                <?= $this->tag->linkTo(['article', 'cancel', 'class' => 'btn btn-custom col-md-3']) ?>
+            </div>
+        <?= $this->tag->endForm() ?>
+    </div>
+
 
 
 

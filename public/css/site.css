@@ -31,3 +31,15 @@ hr{
 .center-text{
     text-align: center;
 }
+
+.articleForm{
+    padding: 15px 10px 15px 10px;
+    background-color:#FEF5CE;
+    border-radius: 6px;
+    border:1px solid black;
+    box-shadow: 0 0 10px;
+}
+
+.mouse-clickable{
+    cursor:pointer;
+}

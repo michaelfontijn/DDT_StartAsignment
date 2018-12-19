@@ -23,17 +23,12 @@ class ArticleController extends ControllerBase
         // Check whether the request was made with method POST
         if ($request->isPost()) {
 
-            //TODO is there a way to auto map the post data to a model?
-            $creationDate = $date = date('Y-m-d H:i:s');
-            $title = $this->request->getPost('title');
-            $summary = $this->request->getPost('summary');
-            $content = $this->request->getPost('content');
-
+            //TODO Question: is there a way to auto map the post data to a model?
             $article = new Article();
-            $article->creationDate = $creationDate;
-            $article->title = $title;
-            $article->summary = $summary;
-            $article->content = $content;
+            $article->creationDate = $date = date('Y-m-d H:i:s');
+            $article->title = $this->request->getPost('title');
+            $article->summary = $this->request->getPost('summary');
+            $article->content = $this->request->getPost('content');
 
             $article->save();
 
@@ -45,8 +40,45 @@ class ArticleController extends ControllerBase
     public function editAction($id){
         $article = Article::findFirst(['id = ?0', 'bind' => [$id]]);
 
-        $this->view->setVar("title", $article->title);
-        $this->view->setVar("summary", $article->summary);
-        $this->view->setVar("content", $article->content);
+        // Getting a request instance
+        $request = new Request();
+
+        //if the request is a post perform an update on the record, else prepare the view
+        if ($request->isPost()) {
+
+            //map the post data to the db record and update it
+            $article->title = $this->request->getPost('title');
+            $article->summary = $this->request->getPost('summary');
+            $article->content = $this->request->getPost('content');
+            $article->creationDate = $this->request->getPost('creationDate');
+            $article->update();
+
+            //just redirect to the article overview
+            return $this->response->redirect("/article");
+
+        }else{
+
+            //Prepare the edit view
+            $this->view->setVar("title", $article->title);
+            $this->view->setVar("summary", $article->summary);
+            $this->view->setVar("content", $article->content);
+            $this->view->setVar("creationDate", $article->creationDate);
+            $this->view->setVar("articleId", $article->id);
+        }
+    }
+
+    /*** Deletes a single article record from the database
+     * @param $id The id of the article you want to remove from the database
+     */
+    public function deleteAction($id){
+        $article = Article::findFirst($id);
+        if($article !== false){
+            if($article->delete()){
+                //success, just redirect to the article overview
+                $this->response->redirect("/article");
+            }else{
+                //something went wrong
+            }
+        }
     }
 }
