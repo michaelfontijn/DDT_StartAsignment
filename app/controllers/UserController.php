@@ -8,14 +8,19 @@
 
 class UserController extends ControllerBase
 {
-
-
-
     public function indexAction(){
 
     }
 
     public function loginAction(){
+
+        // Checking a for a valid csrf token
+        if ($this->request->isPost()) {
+            if (!$this->security->checkToken()) {
+                return;
+            }
+        }
+
         //get the login data from the post
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');

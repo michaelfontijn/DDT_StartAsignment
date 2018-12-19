@@ -17,6 +17,13 @@ class ArticleController extends ControllerBase
     }
 
     public function createAction(){
+        // Checking a for a valid csrf token
+        if ($this->request->isPost()) {
+            if (!$this->security->checkToken()) {
+                return;
+            }
+        }
+
         // Getting a request instance
         $request = new Request();
 
@@ -38,6 +45,13 @@ class ArticleController extends ControllerBase
     }
 
     public function editAction($id){
+        // Checking a for a valid csrf token
+        if ($this->request->isPost()) {
+            if (!$this->security->checkToken()) {
+                return;
+            }
+        }
+
         $article = Article::findFirst(['id = ?0', 'bind' => [$id]]);
 
         // Getting a request instance
@@ -85,5 +99,12 @@ class ArticleController extends ControllerBase
     public function archiveAction(){
         $articles = Article::find();
         $this->view->setVar("articles", $articles);
+    }
+
+    public function detailAction($id){
+        $article = Article::findFirst($id);
+
+        $this->view->setVar('article', $article);
+
     }
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-
 <html>
     <head>
         <title>phalconOne</title>
@@ -10,7 +9,6 @@
 
         {#Render local css assets#}
         {{ assets.outputCss() }}
-
     </head>
     <body>
         <div class="container" id="siteContainer">

@@ -8,7 +8,7 @@ use Phalcon\Mvc\Url as UrlProvider;
 use Phalcon\Mvc\Application;
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Assets\Manager as AssetManager;
-
+use Phalcon\Security;
 
 // Define some absolute path constants to aid in locating resources
 define('BASE_PATH', dirname(__DIR__));
@@ -106,6 +106,32 @@ $di->set(
         );
 
         return $router;
+    }
+);
+
+//partly for the csrf token
+$di->set(
+    'security',
+    function () {
+        $security = new Security();
+
+        // Set the password hashing factor to 12 rounds
+        $security->setWorkFactor(12);
+
+        return $security;
+    },
+    true
+);
+
+//also required for the csrf token
+$di->setShared(
+    'session',
+    function () {
+        $session = new \Phalcon\Session\Adapter\Files();
+
+        $session->start();
+
+        return $session;
     }
 );
 
