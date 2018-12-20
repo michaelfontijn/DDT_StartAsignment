@@ -8,10 +8,16 @@
 
 class UserController extends ControllerBase
 {
+    /*
+     * The action for user/index
+     */
     public function indexAction(){
 
     }
 
+    /*
+     * The action for user/login
+     */
     public function loginAction(){
 
         // Checking a for a valid csrf token
@@ -19,45 +25,57 @@ class UserController extends ControllerBase
             if (!$this->security->checkToken()) {
                 return;
             }
-        }
 
-        //get the login data from the post
-        $username = $this->request->getPost('username');
-        $password = $this->request->getPost('password');
 
-        //an array to store all validation errors that occur
-        $validationErrors = array();
+            //get the login data from the post
+            $username = $this->request->getPost('username');
+            $password = $this->request->getPost('password');
 
-        if(empty($username)){
-            array_push($validationErrors, "Please enter your username");
-        }
-        if(empty($password)){
-            array_push($validationErrors, "Please enter your password");
-        }
+            //an array to store all validation errors that occur
+            $validationErrors = array();
 
-        //check if a user with the supplied username is present in the database
-        $user = User::findFirst([
-            conditions => "username = ?1",
-            bind => [1 => $username]
-        ]);
-
-        //if a user with the supplied username was found, check if the combination of password and username is valid
-        if ($user) {
-            if ($this->security->checkHash($password, $user->password)) {
-
-                //redirect to the admin home page
-                return $this->response->redirect("/article");
+            if(empty($username)){
+                array_push($validationErrors, "Please enter your username and try again.");
             }
-            else{
+            if(empty($password)){
+                array_push($validationErrors, "Please enter your password and try again.");
+            }
+
+            //check if a user with the supplied username is present in the database
+            $user = User::findFirst([
+                conditions => "username = ?1",
+                bind => [1 => $username]
+            ]);
+
+            //if a user with the supplied username was found, check if the combination of password and username is valid
+            if ($user) {
+                if ($this->security->checkHash($password, $user->password)) {
+
+                    //Successful login, save the user data in a session
+                    $this->session->set('username', $username);
+                    $this->session->set('auth', true);
+
+                    //redirect to the admin home page
+                    return $this->response->redirect("/article");
+                }
+                else{
+                    array_push($validationErrors, "Incorrect username or password. Please try again.");
+                }
+            }else{
                 array_push($validationErrors, "Incorrect username or password. Please try again.");
-
-                //TODO implement the CRF something token, it looks prty easy(find it in cheatsheet security)
             }
+
+            $this->view->pick('user/index');
+
+            //pass the validation errors to the view
+            $this->view->setVar('validationErrors', $validationErrors);
         }
-        //TODO display validation!
-        return $this->response->redirect("/index");
     }
 
+
+    /*** Creates an demo user in the database with a hashed password
+     * @return mixed
+     */
     public function createAction(){
         $user = new User();
 
@@ -72,5 +90,13 @@ class UserController extends ControllerBase
 
         //for now just redirect to the homepage after inserting the demo user
         return $this->response->redirect("/index");
+    }
+
+    public function logoutAction(){
+        //clear the session in its entirety
+        $this->session->destroy();
+
+        //redirect to the site homepage
+        $this->response->redirect("/index");
     }
 }

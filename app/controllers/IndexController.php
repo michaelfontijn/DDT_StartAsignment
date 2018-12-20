@@ -8,6 +8,9 @@
 
 class IndexController extends ControllerBase
 {
+    /*
+     * The action to load the homepage.
+     */
     public function indexAction(){
         //get all articles from the database
         $articles = Article::find([

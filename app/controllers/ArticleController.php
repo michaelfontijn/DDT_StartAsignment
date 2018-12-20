@@ -9,6 +9,9 @@
 use Phalcon\Http\Request;
 class ArticleController extends ControllerBase
 {
+    /*
+     * The action for article/index
+     */
     public function indexAction(){
         //get all users
         $articles = Article::find();
@@ -16,6 +19,9 @@ class ArticleController extends ControllerBase
         $this->view->setVar("articles", $articles);
     }
 
+    /*
+     * The action for article/create
+     */
     public function createAction(){
         // Checking a for a valid csrf token
         if ($this->request->isPost()) {
@@ -44,6 +50,9 @@ class ArticleController extends ControllerBase
         }
     }
 
+    /**The action for article/edit
+     * @param $id The id of the article
+     */
     public function editAction($id){
         // Checking a for a valid csrf token
         if ($this->request->isPost()) {
@@ -96,11 +105,17 @@ class ArticleController extends ControllerBase
         }
     }
 
+    /*
+     * The action for article/archive
+     */
     public function archiveAction(){
         $articles = Article::find();
         $this->view->setVar("articles", $articles);
     }
 
+    /*
+     * The action for article/detail
+     */
     public function detailAction($id){
         $article = Article::findFirst($id);
 

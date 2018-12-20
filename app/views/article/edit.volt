@@ -5,15 +5,6 @@
 
 <h1 class="orange">Edit Article</h1>
 
-    {#If there are validation errors, show them#}
-    {% if  validationErrors is defined and validationErrors | length > 0 %}
-        <div id="valErrorContainer">
-            {% for error in validationErrors %}
-                <p>{{ error }}</p>
-            {% endfor  %}
-        </div>
-    {% endif  %}
-
      <div class="articleForm">
          {{ form('article/edit/' ~ articleId ) }}
 

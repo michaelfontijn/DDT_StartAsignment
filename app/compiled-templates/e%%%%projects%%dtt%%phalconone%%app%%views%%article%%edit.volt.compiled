@@ -5,15 +5,6 @@
 
 <h1 class="orange">Edit Article</h1>
 
-    
-    <?php if (isset($validationErrors) && $this->length($validationErrors) > 0) { ?>
-        <div id="valErrorContainer">
-            <?php foreach ($validationErrors as $error) { ?>
-                <p><?= $error ?></p>
-            <?php } ?>
-        </div>
-    <?php } ?>
-
      <div class="articleForm">
          <?= $this->tag->form(['article/edit/' . $articleId]) ?>
 

@@ -10,6 +10,7 @@ use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Assets\Manager as AssetManager;
 use Phalcon\Security;
 
+
 // Define some absolute path constants to aid in locating resources
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
@@ -88,6 +89,7 @@ $di->set(
     }
 );
 
+//configure the routes
 $di->set(
     'router',
     function (){

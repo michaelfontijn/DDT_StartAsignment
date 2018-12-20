@@ -17,6 +17,16 @@ hr{
    padding-bottom:5px;
 }
 
+#valErrorContainer{
+    background-color:#FF0F00;
+    color:#FFFFFF;
+    padding:10px 10px 0px 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border:1px solid black;
+
+}
+
 .btn-custom{
     background-color:#EE7F50;
     color:#FFFFFF;
