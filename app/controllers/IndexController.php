@@ -12,12 +12,11 @@ class IndexController extends ControllerBase
      * The action to load the homepage.
      */
     public function indexAction(){
-        //get all articles from the database
+        //Supply the view with the 5 most recent articles
         $articles = Article::find([
                 'order' => 'creationDate DESC',
                 'limit' => 5
         ]);
-
         $this->view->setVar("articles", $articles);
     }
 

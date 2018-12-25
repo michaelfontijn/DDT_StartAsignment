@@ -4,17 +4,17 @@
 
 <h1 class="orange">New article</h1>
 
-    
-    <div class="articleForm">
-        <?= $this->tag->form(['article/create']) ?>
-            <?= $this->partial('article/_form') ?>
 
-            <div class="col-md-8 offset-2 center-text">
-                <?= $this->tag->submitButton(['Save Changes', 'class' => 'btn btn-custom col-md-3']) ?>
-                <?= $this->tag->linkTo(['article', 'cancel', 'class' => 'btn btn-custom col-md-3']) ?>
-            </div>
-        <?= $this->tag->endForm() ?>
-    </div>
+<div class="articleForm">
+    <?= $this->tag->form(['article/create']) ?>
+        <?= $this->partial('article/_form') ?>
+
+        <div class="col-md-8 offset-2 center-text">
+            <?= $this->tag->submitButton(['Save Changes', 'class' => 'btn btn-custom col-md-3']) ?>
+            <?= $this->tag->linkTo(['article', 'cancel', 'class' => 'btn btn-custom col-md-3']) ?>
+        </div>
+    <?= $this->tag->endForm() ?>
+</div>
 
 
 

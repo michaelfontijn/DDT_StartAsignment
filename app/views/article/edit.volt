@@ -5,34 +5,33 @@
 
 <h1 class="orange">Edit Article</h1>
 
-     <div class="articleForm">
-         {{ form('article/edit/' ~ articleId ) }}
+<div class="articleForm">
+    {{ form('article/edit/' ~ articleId ) }}
 
-         {#Load in the form inputs#}
-         {{ partial("article/_form") }}
+    {#Load in the form inputs#}
+    {{ partial("article/_form") }}
 
-         {#The publishing date#}
-         {% if creationDate is defined %}
-             <div class="form-group row">
-                 <label for="creationDate" class="col-md-2 col-form-label">Publication Date</label>
-                 <div class="col-md-10">
-                     {{ date_field('creationDate','value' : creationDate, 'class' : 'form-control','disabled') }}
-                 </div>
-             </div>
-         {% endif %}
+    {#The publishing date#}
+    {% if creationDate is defined %}
+        <div class="form-group row">
+            <label for="creationDate" class="col-md-2 col-form-label">Publication Date</label>
+            <div class="col-md-10">
+                {{ date_field('creationDate','value' : creationDate, 'class' : 'form-control','disabled') }}
+            </div>
+        </div>
+    {% endif %}
 
-         <div class="col-md-8 offset-2 center-text">
-             {{ submit_button('Save changes', 'class' : 'btn btn-custom col-md-3 btnLogin') }}
-             {{ link_to("article", "cancel", 'class' :'btn btn-custom col-md-3') }}
-         </div>
+    <div class="col-md-8 offset-2 center-text">
+        {{ submit_button('Save changes', 'class' : 'btn btn-custom col-md-3 btnLogin') }}
+        {{ link_to("article", "cancel", 'class' :'btn btn-custom col-md-3') }}
+    </div>
 
-         {{ end_form() }}
-     </div>
+    {{ end_form() }}
+</div>
 
-
-    <br>
-    {#The delete button#}
-    {{ link_to("article/delete/" ~ articleId, "Delete This Article") }}
+<br>
+{#The delete button#}
+{{ link_to("article/delete/" ~ articleId, "Delete This Article") }}
 
 
 

@@ -72,3 +72,30 @@ hr{
     font-size:12px;
     font-weight:bold;
 }
+
+
+/*DTT table-------------------------*/
+.table-dtt thead{
+    background-color:#EE7F50;
+    color:#FFFFFF;
+    border:1px solid #00A0AD!important;
+}
+
+/*disable the default bootstrap borders for the th's since they are bigger than our custom borders*/
+.table-dtt thead th{
+    border:none!important;
+}
+
+/*Disable the top border of all td's in the first row of the table body since they are 2px by default and wil overwrite
+our custom 1px border*/
+.table-dtt tbody tr:first-child td {border-top:none!important; }
+
+/*Set the row colors for the dtt table styling for the odd and even rows using pure CSS*/
+.table-dtt tbody tr:nth-child(even) {background: #FEF5CE!important;}
+.table-dtt tbody tr:nth-child(odd) {background: #FFFFFF!important;}
+
+.table-dtt{
+    border-left:2px solid #00A0AD;
+    border-right: 2px solid #00A0AD;
+}
+/*DTT table-------------------------*/

@@ -13,9 +13,8 @@ class ArticleController extends ControllerBase
      * The action for article/index
      */
     public function indexAction(){
-        //get all users
+        //Supply the view with a list of all articles
         $articles = Article::find();
-
         $this->view->setVar("articles", $articles);
     }
 
@@ -26,6 +25,7 @@ class ArticleController extends ControllerBase
         // Checking a for a valid csrf token
         if ($this->request->isPost()) {
             if (!$this->security->checkToken()) {
+                //if the csrf token is not valid, end the algorithm here
                 return;
             }
         }
@@ -43,6 +43,7 @@ class ArticleController extends ControllerBase
             $article->summary = $this->request->getPost('summary');
             $article->content = $this->request->getPost('content');
 
+            //save the article to the database
             $article->save();
 
             //return to the admin article overview so the user can see the new article in the list
@@ -57,10 +58,12 @@ class ArticleController extends ControllerBase
         // Checking a for a valid csrf token
         if ($this->request->isPost()) {
             if (!$this->security->checkToken()) {
+                //if the csrf token is not valid, end the algorithm here
                 return;
             }
         }
 
+        //find the article based on the supplied id
         $article = Article::findFirst(['id = ?0', 'bind' => [$id]]);
 
         // Getting a request instance
@@ -100,7 +103,7 @@ class ArticleController extends ControllerBase
                 //success, just redirect to the article overview
                 $this->response->redirect("/article");
             }else{
-                //something went wrong
+                //notify the user something went wrong
             }
         }
     }
@@ -118,7 +121,6 @@ class ArticleController extends ControllerBase
      */
     public function detailAction($id){
         $article = Article::findFirst($id);
-
         $this->view->setVar('article', $article);
 
     }

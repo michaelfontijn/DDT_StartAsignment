@@ -5,7 +5,7 @@
 <h1 class="orange">All Articles</h1><br>
 
 {% if articles is defined and articles | length > 0 %}
-    <table class="table table-striped table-hover mouse-clickable">
+    <table class="table table-striped table-hover mouse-clickable table-dtt">
         <thead>
         <tr>
             <th>Publication Date</th>

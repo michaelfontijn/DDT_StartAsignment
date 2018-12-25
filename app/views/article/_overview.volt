@@ -13,6 +13,7 @@
                 </div>
             </div>
 
+
             {#The summary#}
             <div class="row">
                 <div class="col-md-8 offset-2">
