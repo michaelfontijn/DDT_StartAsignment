@@ -71,8 +71,10 @@ hr{
     color:#F09682;
     font-size:12px;
     font-weight:bold;
-}
+    display:inline-block;
+    width:18.5%;
 
+}
 
 /*DTT table-------------------------*/
 .table-dtt thead{
