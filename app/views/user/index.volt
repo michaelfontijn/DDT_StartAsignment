@@ -1,3 +1,12 @@
+
+
+{#The unauthorized message in from the SecurityPlugin in case the user trys to access a resource he may not#}
+{% if flashSession.has("error") %}
+<div class="unauthorizedError">
+    {{ flashSession.output() }}
+</div>
+{% endif %}
+
 <div id="loginContainer" class="col-md-6 offset-3">
 
     {#If there are validation errors, show them#}
@@ -32,3 +41,5 @@
         {{ submit_button('Login!', 'class' : 'btn btn-custom col-md-4 offset-4 btnLogin') }}
     {{ end_form() }}
 </div>
+
+

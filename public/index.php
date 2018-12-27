@@ -9,6 +9,9 @@ use Phalcon\Mvc\Application;
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Assets\Manager as AssetManager;
 use Phalcon\Security;
+use Phalcon\Mvc\Dispatcher;
+use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Flash\Session as FlashSession;
 
 
 // Define some absolute path constants to aid in locating resources
@@ -18,14 +21,15 @@ define('APP_PATH', BASE_PATH . '/app');
 //register/ configure the autoloader
 $loader = new Loader();
 
+//register the directories for the models and controllers
 $loader->registerDirs(
     [
         APP_PATH . '/controllers/',
         APP_PATH . '/models/',
+        APP_PATH . '/plugins'
     ]
 );
 $loader->register();
-
 
 // Create a DI (for managing dependency injection)
 $di = new FactoryDefault();
@@ -113,7 +117,7 @@ $di->set(
 
 //partly for the csrf token
 $di->set(
-    'security',
+    'plugins',
     function () {
         $security = new Security();
 
@@ -137,6 +141,35 @@ $di->setShared(
     }
 );
 
+//Filter all events produced by the dispatcher,
+$di->set(
+    'dispatcher',
+    function () {
+        // Create an events manager
+        $eventsManager = new EventsManager();
+
+        // Listen for events produced in the dispatcher using the Security plugin
+        $eventsManager->attach(
+            'dispatch:beforeExecuteRoute',
+            new SecurityPlugin()
+        );
+
+        $dispatcher = new Dispatcher();
+
+        // Assign the events manager to the dispatcher
+        $dispatcher->setEventsManager($eventsManager);
+
+        return $dispatcher;
+    }
+);
+
+// Set up the flash session service
+$di->set(
+    'flashSession',
+    function () {
+        return new FlashSession();
+    }
+);
 
 //This handles incoming requests and routes them to the corresponding controller actions?
 $application = new Application($di);

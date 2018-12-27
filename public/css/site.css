@@ -71,9 +71,21 @@ hr{
     color:#F09682;
     font-size:12px;
     font-weight:bold;
+}
+
+#article-date-overview{
     display:inline-block;
     width:18.5%;
+}
 
+
+.unauthorizedError{
+    color:#FFFFFF;
+    background-color:red;
+    text-align: center;
+    margin:20px;
+    border-radius:6px;
+    border:1px solid black;
 }
 
 /*DTT table-------------------------*/

@@ -15,7 +15,7 @@
 
             {#The date and title#}
             <div class="col-md-10">
-                <span class="article-date" > {{ article.getCreationDate()}}</span>
+                <span id="article-date-overview" class="article-date" > {{ article.getCreationDate()}}</span>
 
                 {{ link_to('article/detail/' ~ article.id, article.title, 'class' : 'article-title') }}
             </div>
