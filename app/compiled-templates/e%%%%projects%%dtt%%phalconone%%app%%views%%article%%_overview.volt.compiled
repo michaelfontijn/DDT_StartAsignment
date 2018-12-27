@@ -16,7 +16,7 @@
             
             <div class="col-md-10">
                 <span class="article-date" > <?= $article->getCreationDate() ?></span>
-                
+
                 <?= $this->tag->linkTo(['article/detail/' . $article->id, $article->title, 'class' => 'article-title']) ?>
             </div>
 

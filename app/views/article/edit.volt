@@ -14,7 +14,7 @@
     {#The publishing date#}
     {% if creationDate is defined %}
         <div class="form-group row">
-            <label for="creationDate" class="col-md-2 col-form-label">Publication Date</label>
+            <label for="creationDate" class="col-md-2 col-form-label align-right">Publication Date</label>
             <div class="col-md-10">
                 {{ date_field('creationDate','value' : creationDate, 'class' : 'form-control','disabled') }}
             </div>

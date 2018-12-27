@@ -3,7 +3,7 @@
 <input type="hidden" name="<?=$this->security->getTokenKey()?>" value="<?=$this->security->getToken()?>"/>
 
 <div class="form-group row">
-    <label for="title" class="col-md-2 col-form-label">Article Title</label>
+    <label for="title" class="col-md-2 col-form-label align-right">Article Title</label>
     <div class="col-md-10">
         <?php if (isset($title)) { ?>
             <?= $this->tag->textField(['title', 'size' => 32, 'class' => 'form-control', 'value' => $title]) ?>
@@ -14,7 +14,7 @@
 </div>
 
 <div class="form-group row">
-    <label for="summary" class="col-md-2 col-form-label">Article Summary</label>
+    <label for="summary" class="col-md-2 col-form-label align-right">Article Summary</label>
     <div class="col-md-10">
         <?php if (isset($summary)) { ?>
             <?= $this->tag->textArea(['summary', 'size' => 32, 'class' => 'form-control', 'value' => $summary]) ?>
@@ -25,7 +25,7 @@
 </div>
 
 <div class="form-group row">
-    <label for="content" class="col-md-2 col-form-label">Article Content</label>
+    <label for="content" class="col-md-2 col-form-label align-right">Article Content</label>
     <div class="col-md-10">
         <?php if (isset($content)) { ?>
             <?= $this->tag->textArea(['content', 'size' => 32, 'class' => 'form-control', 'value' => $content]) ?>

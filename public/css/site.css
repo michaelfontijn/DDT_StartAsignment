@@ -46,11 +46,15 @@ hr{
 }
 
 .articleForm{
-    padding: 15px 10px 15px 10px;
+    padding: 5% 4% 3% 1%;
     background-color:#FEF5CE;
     border-radius: 6px;
     border:1px solid black;
     box-shadow: 0 0 10px;
+}
+.align-right{
+    text-align: right;
+    padding:0px;
 }
 
 .mouse-clickable{
