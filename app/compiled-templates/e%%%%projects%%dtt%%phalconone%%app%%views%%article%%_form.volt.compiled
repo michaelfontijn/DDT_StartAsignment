@@ -1,12 +1,20 @@
 
 
+
+<?php if ($this->flashSession->has('error')) { ?>
+    <div class="validation-error-group">
+        <?= $this->flashSession->output() ?>
+    </div>
+<?php } ?>
+
+
 <input type="hidden" name="<?=$this->security->getTokenKey()?>" value="<?=$this->security->getToken()?>"/>
 
 <div class="form-group row">
     <label for="title" class="col-md-2 col-form-label">Article Title</label>
     <div class="col-md-10">
-        <?php if (isset($title)) { ?>
-            <?= $this->tag->textField(['title', 'size' => 32, 'class' => 'form-control', 'value' => $title]) ?>
+        <?php if (isset($article->title)) { ?>
+            <?= $this->tag->textField(['title', 'size' => 32, 'class' => 'form-control', 'value' => $article->title]) ?>
         <?php } else { ?>
             <?= $this->tag->textField(['title', 'size' => 32, 'class' => 'form-control']) ?>
         <?php } ?>
@@ -16,8 +24,8 @@
 <div class="form-group row">
     <label for="summary" class="col-md-2 col-form-label">Article Summary</label>
     <div class="col-md-10">
-        <?php if (isset($summary)) { ?>
-            <?= $this->tag->textArea(['summary', 'size' => 32, 'class' => 'form-control', 'value' => $summary]) ?>
+        <?php if (isset($article->summary)) { ?>
+            <?= $this->tag->textArea(['summary', 'size' => 32, 'class' => 'form-control', 'value' => $article->summary]) ?>
         <?php } else { ?>
             <?= $this->tag->textArea(['summary', 'size' => 32, 'class' => 'form-control']) ?>
         <?php } ?>
@@ -27,8 +35,8 @@
 <div class="form-group row">
     <label for="content" class="col-md-2 col-form-label">Article Content</label>
     <div class="col-md-10">
-        <?php if (isset($content)) { ?>
-            <?= $this->tag->textArea(['content', 'size' => 32, 'class' => 'form-control', 'value' => $content]) ?>
+        <?php if (isset($article->content)) { ?>
+            <?= $this->tag->textArea(['content', 'size' => 32, 'class' => 'form-control', 'value' => $article->content]) ?>
         <?php } else { ?>
             <?= $this->tag->textArea(['content', 'size' => 32, 'class' => 'form-control']) ?>
         <?php } ?>

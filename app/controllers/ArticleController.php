@@ -21,7 +21,8 @@ class ArticleController extends ControllerBase
     /*
      * The action for article/create
      */
-    public function createAction(){
+    public function createAction()
+    {
         // Checking a for a valid csrf token
         if ($this->request->isPost()) {
             if (!$this->security->checkToken()) {
@@ -44,8 +45,14 @@ class ArticleController extends ControllerBase
             $article->content = $this->request->getPost('content');
 
             //save the article to the database
-            $article->save();
-
+            if (!$article->save()) {
+                //if the save was not successful
+                foreach ($article->getMessages() as $message) {
+                    //append the validation errors to the flash session
+                    $this->flashSession->error($message);
+                }
+                return;
+            }
             //return to the admin article overview so the user can see the new article in the list
             return $this->response->redirect("/article");
         }
@@ -77,19 +84,27 @@ class ArticleController extends ControllerBase
             $article->summary = $this->request->getPost('summary');
             $article->content = $this->request->getPost('content');
             $article->creationDate = $this->request->getPost('creationDate');
-            $article->update();
+
+
+            //try to update the article, if it fails let the user know what went wrong
+            if(!$article->update()){
+                //get all the validationErrors and store them in the flashSessions
+                foreach ($article->getMessages() as $message) {
+                    //append the validation errors to the flash session
+                    $this->flashSession->error($message);
+                }
+
+                //make sure to pass the article object back to the view because it still requires this object
+                $this->view->setVar('article', $article);
+                return;
+            }
 
             //just redirect to the article overview
             return $this->response->redirect("/article");
 
         }else{
-
             //Prepare the edit view
-            $this->view->setVar("title", $article->title);
-            $this->view->setVar("summary", $article->summary);
-            $this->view->setVar("content", $article->content);
-            $this->view->setVar("creationDate", $article->creationDate);
-            $this->view->setVar("articleId", $article->id);
+            $this->view->setVar("article" , $article);
         }
     }
 
@@ -103,7 +118,7 @@ class ArticleController extends ControllerBase
                 //success, just redirect to the article overview
                 $this->response->redirect("/article");
             }else{
-                //notify the user something went wrong
+                //something went wrong
             }
         }
     }

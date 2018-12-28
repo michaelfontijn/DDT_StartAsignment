@@ -88,6 +88,15 @@ hr{
     border:1px solid black;
 }
 
+.validation-error-group{
+    background-color:#ff4242;
+    color:white;
+    margin:20px;
+    text-align: center;
+    border-radius: 6px;
+    border:1px solid black;
+}
+
 /*DTT table-------------------------*/
 .table-dtt thead{
     background-color:#EE7F50;
