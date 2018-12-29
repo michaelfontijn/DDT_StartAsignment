@@ -14,7 +14,9 @@ class ArticleController extends ControllerBase
      */
     public function indexAction(){
         //Supply the view with a list of all articles
-        $articles = Article::find();
+        $articles = Article::find([
+            'order' => 'creationDate DESC'
+        ]);
         $this->view->setVar("articles", $articles);
     }
 
@@ -139,7 +141,9 @@ class ArticleController extends ControllerBase
      * The action for article/archive
      */
     public function archiveAction(){
-        $articles = Article::find();
+        $articles = Article::find([
+            'order' => 'creationDate DESC'
+        ]);
         $this->view->setVar("articles", $articles);
     }
 
