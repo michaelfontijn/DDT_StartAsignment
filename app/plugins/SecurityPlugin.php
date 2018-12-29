@@ -14,10 +14,13 @@ use Phalcon\Mvc\User\Plugin;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Acl\Adapter\Memory as AclList;
 
+/***
+ * This class is responsible for checking if a user is authorized to access the requested resource,
+ * Before the execution of a route it wil check if the user has permission and denny/allow him accordingly
+ * Class SecurityPlugin
+ */
 class SecurityPlugin extends Plugin
 {
-
-
     public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
     {
         // Check whether the 'auth' variable exists in session to define the active role
@@ -27,13 +30,7 @@ class SecurityPlugin extends Plugin
             $role = 'Guests';
         } else {
             $role = 'Admins';
-
-            //TODO maybe remove this?
-            //the user is logged in as an admin, there is no need to check the acl if the user has permission for a
-            //resource because this role has access to all resources
-            //return;
         }
-
 
         // Take the active controller/action from the dispatcher
         $controller = $dispatcher->getControllerName();

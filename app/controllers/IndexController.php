@@ -8,7 +8,7 @@
 
 class IndexController extends ControllerBase
 {
-    /*
+    /***
      * The action to load the homepage.
      */
     public function indexAction(){
@@ -19,5 +19,4 @@ class IndexController extends ControllerBase
         ]);
         $this->view->setVar("articles", $articles);
     }
-
 }

@@ -8,14 +8,15 @@
 
 class UserController extends ControllerBase
 {
-    /*
+
+    /***
      * The action for user/index
      */
     public function indexAction(){
 
     }
 
-    /*
+    /***
      * The action for user/login
      */
     public function loginAction(){
@@ -92,6 +93,9 @@ class UserController extends ControllerBase
         return $this->response->redirect("/index");
     }
 
+    /***
+     * Logs the current user out
+     */
     public function logoutAction(){
         //clear the session in its entirety
         $this->session->destroy();

@@ -4,6 +4,10 @@
 
 <h1 class="orange">All Articles</h1><br>
 
+
+<?= $this->partial('shared/_flashMessageOutput') ?>
+
+
 <?php if (isset($articles) && $this->length($articles) > 0) { ?>
     <table class="table table-striped table-hover mouse-clickable table-dtt">
         <thead>
@@ -25,6 +29,7 @@
     </table>
 
 <?php } ?>
+
 
  <?php if ($this->length($articles) > 0) { ?>
      <p><?= $this->length($articles) ?> articles in total.</p>

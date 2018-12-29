@@ -9,7 +9,7 @@
 use Phalcon\Http\Request;
 class ArticleController extends ControllerBase
 {
-    /*
+    /***
      * The action for article/index
      */
     public function indexAction(){
@@ -18,7 +18,8 @@ class ArticleController extends ControllerBase
         $this->view->setVar("articles", $articles);
     }
 
-    /*
+
+    /***
      * The action for article/create
      */
     public function createAction()
@@ -44,15 +45,19 @@ class ArticleController extends ControllerBase
             $article->summary = $this->request->getPost('summary');
             $article->content = $this->request->getPost('content');
 
-            //save the article to the database
+            //try to save the article to the database, if it fails let the user know what went wrong
             if (!$article->save()) {
-                //if the save was not successful
+                //get all the validationErrors and store them in the flashSessions and return the view
                 foreach ($article->getMessages() as $message) {
                     //append the validation errors to the flash session
                     $this->flashSession->error($message);
                 }
                 return;
             }
+
+            //let the user know the article was saved successfully
+            $this->flashSession->message('message', 'The article has successfully been created');
+
             //return to the admin article overview so the user can see the new article in the list
             return $this->response->redirect("/article");
         }
@@ -99,6 +104,9 @@ class ArticleController extends ControllerBase
                 return;
             }
 
+            //let the user know the article was updated successfully
+            $this->flashSession->message('message', 'The article has successfully been updated');
+
             //just redirect to the article overview
             return $this->response->redirect("/article");
 
@@ -115,6 +123,10 @@ class ArticleController extends ControllerBase
         $article = Article::findFirst($id);
         if($article !== false){
             if($article->delete()){
+
+                //let the user know the article was removed successfully
+                $this->flashSession->message('message', 'The article has successfully been removed');
+
                 //success, just redirect to the article overview
                 $this->response->redirect("/article");
             }else{
@@ -123,7 +135,7 @@ class ArticleController extends ControllerBase
         }
     }
 
-    /*
+    /***
      * The action for article/archive
      */
     public function archiveAction(){
@@ -131,8 +143,10 @@ class ArticleController extends ControllerBase
         $this->view->setVar("articles", $articles);
     }
 
-    /*
-     * The action for article/detail
+
+
+    /***The action for article/detail
+     * @param $id The id of the article you want to show the detail page for
      */
     public function detailAction($id){
         $article = Article::findFirst($id);

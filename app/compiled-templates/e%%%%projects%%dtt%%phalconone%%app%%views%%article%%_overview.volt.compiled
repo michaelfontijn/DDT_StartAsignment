@@ -2,24 +2,12 @@
 
     <div class="col-md-10">
         <?php foreach ($articles as $article) { ?>
-
-            
-            
-                
-                    
-                
-                
-                    
-                
-            
-
             
             <div class="col-md-10">
                 <span id="article-date-overview" class="article-date" > <?= $article->getCreationDate() ?></span>
 
                 <?= $this->tag->linkTo(['article/detail/' . $article->id, $article->title, 'class' => 'article-title']) ?>
             </div>
-
 
             
             <div class="row">

@@ -97,6 +97,16 @@ hr{
     border:1px solid black;
 }
 
+/*For the generic flash message output component*/
+.flash-message-group{
+    background-color:#0066ff;
+    color:#FFFFFF;
+    border-radius: 6px;
+    border:1px solid black;
+    text-align: center;
+    margin:0px 10px 15px 10px;
+}
+
 /*DTT table-------------------------*/
 .table-dtt thead{
     background-color:#EE7F50;

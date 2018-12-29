@@ -4,6 +4,10 @@
 
 <h1 class="orange">All Articles</h1><br>
 
+{#Output flash messages if there are any#}
+{{ partial("shared/_flashMessageOutput") }}
+
+{#Built the article table#}
 {% if articles is defined and articles | length > 0 %}
     <table class="table table-striped table-hover mouse-clickable table-dtt">
         <thead>
@@ -26,6 +30,7 @@
 
 {% endif %}
 
+{#Show the amount of articles#}
  {% if articles | length > 0 %}
      <p>{{ articles | length }} articles in total.</p>
  {% else %}

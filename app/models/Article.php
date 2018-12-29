@@ -30,8 +30,9 @@ class Article extends Model
         return strtoupper ($monthName);
     }
 
-
-
+    /*** Configure the validation properties for the model
+     * @return mixed
+     */
     public function validation(){
         $validator = new Validation();
 
