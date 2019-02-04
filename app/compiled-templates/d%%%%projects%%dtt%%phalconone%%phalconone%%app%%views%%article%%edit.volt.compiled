@@ -1,0 +1,39 @@
+
+
+
+<?= $this->partial('shared/_adminWidgetMenu') ?>
+
+<h1 class="orange">Edit Article</h1>
+
+<div class="articleForm">
+    <?= $this->tag->form(['article/edit/' . $article->id]) ?>
+
+    
+    <?= $this->partial('article/_form') ?>
+
+    
+    <?php if (isset($article->creationDate)) { ?>
+        <div class="form-group row">
+            <label for="creationDate" class="col-md-2 col-form-label">Publication Date</label>
+            <div class="col-md-10">
+                <?= $this->tag->dateField(['creationDate', 'value' => $article->creationDate, 'class' => 'form-control', 'disabled']) ?>
+            </div>
+        </div>
+    <?php } ?>
+
+    <div class="col-md-8 offset-2 center-text">
+        <?= $this->tag->submitButton(['Save changes', 'class' => 'btn btn-custom col-md-3 btnLogin']) ?>
+        <?= $this->tag->linkTo(['article', 'cancel', 'class' => 'btn btn-custom col-md-3']) ?>
+    </div>
+
+    <?= $this->tag->endForm() ?>
+</div>
+
+<br>
+
+<?= $this->tag->linkTo(['article/delete/' . $article->id, 'Delete This Article']) ?>
+
+
+
+
+

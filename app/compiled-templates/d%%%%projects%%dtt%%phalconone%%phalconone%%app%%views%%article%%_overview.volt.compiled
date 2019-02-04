@@ -1,0 +1,27 @@
+<?php if (isset($articles)) { ?>
+
+    <div class="col-md-10">
+        <?php foreach ($articles as $article) { ?>
+            
+            <div class="col-md-10">
+                <span id="article-date-overview" class="article-date" > <?= $article->getCreationDate() ?></span>
+
+                <?= $this->tag->linkTo(['article/detail/' . $article->id, $article->title, 'class' => 'article-title']) ?>
+            </div>
+
+            
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <p class="article-summary">
+                        <?= $article->summary ?>
+                    </p>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+
+    
+    <?php } else { ?>
+    <h5>There are no articles available...</h5>
+
+<?php } ?>

@@ -7,8 +7,24 @@
  */
 
 use Phalcon\Http\Request;
+
+
+
 class ArticleController extends ControllerBase
 {
+    private $_articleRepository;
+    public function __construct(ArticleRepository $repository )
+    {
+        $this.$this->_articleRepository = $repository;
+    }
+
+
+    public function testCreateFunction(){
+        //TODO test this..
+        $user = new User();
+        $this->_articleRepository->create($user);
+    }
+
     /***
      * The action for article/index
      */

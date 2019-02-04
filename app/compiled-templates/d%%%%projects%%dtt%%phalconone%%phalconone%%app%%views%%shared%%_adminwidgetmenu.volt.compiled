@@ -1,0 +1,3 @@
+<h4 class="yellow">Widget News Admin</h4>
+<p>You are logged in as <?= $this->session->get('username') ?>. <?= $this->tag->linkTo(['user/logout', 'Log out']) ?></p>
+<hr>
