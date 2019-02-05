@@ -43,23 +43,46 @@ Interface IRepository
      */
     function hasError(): bool;
 
+    /**
+     * Function to delete multiple models at once
+     * @param ResultSetInterface $model A collection of models that should be deleted
+     * @return bool
+     */
     function deleteMultiple(ResultSetInterface $model): bool;
 
-    function find($id) : ?ModelInterface;
+    /**
+     * Retrieves all models matching the supplied arguments
+     * @param array $arguments
+     * @return null|ResultsetInterface
+     */
+    function find(array $arguments) : ?ResultsetInterface;
 
-    function findFirst($id) : ?ModelInterface;
+    /**
+     * Retrieves the first model matching the supplied arguments
+     * @param array $arguments
+     * @return ModelInterface|null
+     */
+    function findFirst(array $arguments) : ?ModelInterface;
 
-    function count() : int;
+    /**
+     * Function to count the ammount of records pressent matching the supplied arguments
+     * @param array $arguments
+     * @return int
+     */
+    function count(array $arguments) : int;
 
-    function sum() : int;
+
+    function sum(array $arguments) : int;
+
+    function average(array $arguments) : int;
+
+    function min(array $arguments) : int;
+
+    function max(array $arguments) : int;
 
     function findBy() : void;
 
-    function average() : int;
 
-    function min() : int;
-
-    function max() : int;
 
     //TODO should this be moved out of here, into some sort of util class/ manager
     function assignProperties(ModelInterface $model, array $properties) : void;

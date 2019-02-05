@@ -9,11 +9,12 @@
 class ArticleRepository extends  Repository
 {
     /**
-     * RefundRepository constructor.
-     */
+ * RefundRepository constructor.
+ */
     public function __construct()
     {
-        parent::__construct(Refund::class);
+        //TODO this should give the name of this class to the base repoClass
+        parent::__construct(refund::class);
     }
 
     //HERE YOU CAN OVERWRITE /EXTEND THE REPO BASE FOR FUNCTIONALITY FOR THIS SPECIFIC REPO

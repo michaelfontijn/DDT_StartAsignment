@@ -12,26 +12,25 @@ class Repository implements IRepository
     /** @var string */
     protected $error;
 
-    /** @var string  */
+    /** @var string */
     protected $class;
 
-    /** @const string  */
+    /** @const string */
     private const FINDFIRST = 'findFirstBy';
 
-    /** @const string  */
+    /** @const string */
     private const FIND = 'findBy';
 
-
-    function create(ModelInterface $model, array $properties): ?ModelInterface
+    public function create(ModelInterface $model, array $properties): ?ModelInterface
     {
         $this->assignProperties($model, $properties);
 
 
-        if(!$this->beforeCreateValidation($model)) {
+        if (!$this->beforeCreateValidation($model)) {
             return null;
         }
 
-        if(!$model->create()) {
+        if (!$model->create()) {
             $this->error = implode(", ", $model->getMessages());
             return null;
         }
@@ -39,11 +38,11 @@ class Repository implements IRepository
         return $model;
     }
 
-    function update(ModelInterface $model, array $properties): ?ModelInterface
+    public function update(ModelInterface $model, array $properties): ?ModelInterface
     {
         $this->assignProperties($model, $properties);
 
-        if(!$model->update()) {
+        if (!$model->update()) {
             $this->error = implode(", ", $model->getMessages());
             return null;
         }
@@ -51,9 +50,9 @@ class Repository implements IRepository
         return $model;
     }
 
-    function delete(ModelInterface $model): ?ModelInterface
+    public function delete(ModelInterface $model): ?ModelInterface
     {
-        if(!$model->delete()) {
+        if (!$model->delete()) {
             $this->error = implode(", ", $model->getMessages());
             return null;
         }
@@ -61,88 +60,92 @@ class Repository implements IRepository
         return $model;
     }
 
-    function getError(): string
+    public function getError(): string
     {
         return $this->error;
     }
 
-    function hasError(): bool
+    public function hasError(): bool
     {
         return (bool)$this->error;
     }
 
-    function deleteMultiple(ResultSetInterface $model): bool
+    public function deleteMultiple(ResultSetInterface $models): bool
     {
-        if(!$model->delete()) {
-            $this->error = implode(", ", $model->getMessages());
+        if (!$models->delete()) {
+            $this->error = implode(", ", $models->getMessages());
             return false;
         }
 
         return true;
     }
 
-    function find($conditions): ?ModelInterface
+    public function find(array $arguments = []): ?ResultsetInterface
     {
-        //TODO the implementation if this method
-//        //TODO Can we use modelInterface like this? ;p
-//        $model = ModelInterface::findFirst([
-//            conditions => "id = ?1",
-//            bind => [1 => $id]
-//        ]);
+        return $this->class::find($arguments);
     }
 
-    function findFirst($id): ?ModelInterface
+    public function findFirst($arguments): ?ModelInterface
     {
-        //TODO Can we use modelInterface like this? ;p
-        $model = ModelInterface::findFirst([
-            conditions => "id = ?1",
-            bind => [1 => $id]
-        ]);
+        return $this->class::findFirst($arguments) ?? null;
     }
 
-    function count(): int
+    public function count(array $arguments = []): int
     {
-        // TODO: Implement sum() method.
+        return $this->class::count($arguments);
     }
 
-    function sum(): int
+    public function average(array $arguments = []): int
     {
-        // TODO: Implement sum() method.
+        return $this->class::average($arguments);
     }
 
-    function findBy(): void
+    public function sum(array $arguments = []): int
+    {
+        return $this->class::sum($arguments);
+    }
+
+    public function min(array $arguments = []): int
+    {
+        return $this->class::min($arguments);
+    }
+
+    public function max(array $arguments = []): int
+    {
+        return $this->class::max($arguments);
+    }
+
+
+    public function countBy(): int
+    {
+        //TODO: don't know yet  add to interface if required
+    }
+
+    public function sumBy(): int
+    {
+        //TODO: don't know yet add to interface if required
+    }
+
+    public function findBy(): void
     {
         // TODO: Implement findBy() method.
     }
 
-    function average(): int
-    {
-        // TODO: Implement average() method.
-    }
 
-    function min(): int
+    //TODO should this be moved out of here, into some sort of util class/ manager
+    public function assignProperties(ModelInterface $model, array $properties): void
     {
-        // TODO: Implement min() method.
-    }
-
-    function max(): int
-    {
-        // TODO: Implement max() method.
-    }
-
-    function assignProperties(ModelInterface $model, array $properties): void
-    {
-        foreach($properties as $key => $value) {
+        foreach ($properties as $key => $value) {
             $model->$key = $value;
         }
     }
 
-    function beforeCreateValidation(ModelInterface $model): bool
+    //TODO should this be moved out of here, into some sort of util class/ manager (is this required)
+    public function beforeCreateValidation(ModelInterface $model): bool
     {
-       //TODO implement
+        //TODO implement
         return false;
-
-
+        //example code----
 //        $order = $refund->relatedPurchase;
 //
 //        if(!$order) {
@@ -156,6 +159,7 @@ class Repository implements IRepository
 //        }
 //
 //        return true;
+        //--------
     }
 
 
